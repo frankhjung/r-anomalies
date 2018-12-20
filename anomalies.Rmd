@@ -1,0 +1,85 @@
+---
+title: Anomaly Detection
+author: |
+  | [Frank Jung](https://www.linkedin.com/in/frankjung/)
+  | [The Marlo Group](https://www.marlo.com.au)
+  | frank.jung@marlo.com.au
+abstract: |
+   Anomalies are patterns in the data that do not conform to a well-defined
+   notion of normal behaviour. Here we compare two Anomaly Detection algorithms,
+   CUSUM and Seasonal Hybrid ESD algorithm.
+bibliography: anomalies.bib
+link-citations: yes
+csl: https://raw.githubusercontent.com/citation-style-language/styles/master/association-for-computing-machinery.csl
+header-includes:
+  - \usepackage{hyperref}
+  - \twocolumn
+output: rticles::acm_article
+---
+
+```{r setup, include=FALSE, echo=FALSE, message=FALSE, warning=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(cache = TRUE, cache.path = "cache/")
+knitr::opts_chunk$set(fig.width = 10, fig.height = 7, fig.path = "figure/")
+
+require(bookdown)
+require(qcc)
+require(ggplot2)
+```
+
+
+# Introduction
+
+Anomalies are patterns in data that do not conform to a well-defined notion of
+normal behaviour.  There are many different algorithms for anomaly detection
+spanning different categories [@ChandolaBK2009].  In a recent article
+[@Niculaescu2018] the author used a CUSUM algorithm to detect anomalies.
+However, the details of how this was performed was scant.  Consequently, we
+decided to replicate the results.  This was done to a gain an understanding of
+the methods used and how the reporting was performed.
+
+
+
+## Detecting Changes using CUSUM
+
+The [CUSUM](https://en.wikipedia.org/wiki/CUSUM) algorithm is used to test for
+anomalies. This requires two parameters: *threshold* and *drift*. But, how do
+you choose values for these parameters? [@Gustafsson2000] provides this recipe:
+
+* Start with a very large *threshold*.
+* Choose *drift* to one half of the expected change, or adjust drift such that `g = 0` more than 50% of the time.
+* Then set the *threshold* so the required number of false alarms (this can be done automatically) or delay for detection is obtained.
+* If faster detection is sought, try to decrease *drift*.
+* If fewer false alarms are wanted, try to increase *drift*.
+* If there is a subset of the change times that does not make sense, try to increase *drift*.
+
+Here we are using
+[cusum](https://www.rdocumentation.org/packages/qcc/versions/2.6/topics/cusum)
+from the [Quality Control Charts (qcc)
+package](https://www.rdocumentation.org/packages/qcc/).
+
+
+# Evaluation
+
+See [@Eskin2000].
+
+
+# Further Work
+
+Here we have replicated the results from [@Niculaescu2018].  This used the CUSUM
+algorithm.  However, there are numerous other algorithms worth
+investigating[@ChandolaBK2009]. One that is designed for time series data is
+"Seasonal Hybrid ESD" [@HochenbaumVK2017] from Twitter. This is available an
+open source package,
+[AnomalyDetection](https://github.com/twitter/AnomalyDetection).
+
+
+## Resources - to remove once added to bib
+
+* [AnomalyDetection (GitHub)](https://github.com/twitter/AnomalyDetection)
+* [Anomaly Detection in R](https://www.r-bloggers.com/anomaly-detection-in-r-2/)
+* [Introducing Practical and Robust Anomaly detection in a Time Series](https://blog.twitter.com/engineering/en_us/a/2015/introducing-practical-and-robust-anomaly-detection-in-a-time-series.html)
+
+
+# References
+
