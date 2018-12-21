@@ -18,5 +18,5 @@ if (length(args) == 1) {
         render(gsub('pdf$', 'Rmd', args[1]), pdf_document())
     }
 } else {
-    stop("ERROR: too many operands", call. = TRUE)
+    stop("ERROR: only one operand expected", call. = TRUE)
 }

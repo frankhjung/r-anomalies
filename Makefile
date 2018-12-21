@@ -13,7 +13,7 @@
 	@R --quiet --slave --vanilla --file=make.R --args $@
 
 clean:
-	@$(RM) -rf cache figure *.log *.tex
+	@$(RM) -rf cache figure *.log *.tex *.synctex.gz
 
 cleanall: clean
 	@$(RM) -rf *.html *.pdf

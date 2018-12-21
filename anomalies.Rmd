@@ -5,9 +5,14 @@ author: |
   | [The Marlo Group](https://www.marlo.com.au)
   | frank.jung@marlo.com.au
 abstract: |
-   Anomalies are patterns in the data that do not conform to a well-defined
-   notion of normal behaviour. Here we compare two Anomaly Detection algorithms,
-   CUSUM and Seasonal Hybrid ESD algorithm.
+  Anomalies are patterns in data that do not conform to a well-defined notion of
+  normal behaviour. There are many different algorithms for anomaly detection
+  spanning different categories [@ChandolaBK2009]. In a recent article
+  [@Niculaescu2018] the author used a CUSUM algorithm to detect anomalies.
+  However, the details of how this was performed was scant. Consequently, we
+  decided to replicate the results here. This was done to a gain an
+  understanding of the methods used and how parameters are chosen and how to
+  interpret the results.
 bibliography: anomalies.bib
 link-citations: yes
 csl: https://raw.githubusercontent.com/citation-style-language/styles/master/association-for-computing-machinery.csl
@@ -29,16 +34,31 @@ require(ggplot2)
 # Introduction
 
 Anomalies are patterns in data that do not conform to a well-defined notion of
-normal behaviour.  There are many different algorithms for anomaly detection
-spanning different categories [@ChandolaBK2009].  In a recent article
+normal behaviour. There are many different algorithms for anomaly detection
+spanning different categories [@ChandolaBK2009]. In a recent article
 [@Niculaescu2018] the author used a CUSUM algorithm to detect anomalies.
-However, the details of how this was performed was scant.  Consequently, we
-decided to replicate the results.  This was done to a gain an understanding of
-the methods used and how the reporting was performed.
+However, the details of how this was performed was scant. Consequently, we
+decided to replicate the results here. This was done to a gain an understanding
+of the methods used and how the algorithm parameters are chosen.
+
+_Can the choice of parameters be automated?_
 
 
+# Test Overview
 
-## Detecting Changes using CUSUM
+The data provided in [@Niculaescu2018] was insufficient for testing as it
+contained too few anomalies and was a limited sample. Instead, we will simulate
+a larger sample with known anomalies randomly included. This will help to
+evaluate the accuracy of anomaly detection algorithm when split into training
+and validation sets.
+
+
+# Method
+
+_Detailed description of the test method._
+
+
+# Overview of Anomaly Detection Algorithm
 
 The [CUSUM](https://en.wikipedia.org/wiki/CUSUM) algorithm is used to test for
 anomalies. This requires two parameters: *threshold* and *drift*. But, how do
@@ -57,22 +77,31 @@ from the [Quality Control Charts (qcc)
 package](https://www.rdocumentation.org/packages/qcc/).
 
 
+# Tests
+
+_Use sampling process as described above._
+
+
 # Evaluation
 
-See [@Eskin2000].
+_Use ROC to evaluate._
+See also [@Eskin2000].
 
 
 # Further Work
 
 Here we have replicated the results from [@Niculaescu2018].  This used the CUSUM
-algorithm.  However, there are numerous other algorithms worth
+algorithm. However, there are numerous other algorithms worth
 investigating[@ChandolaBK2009]. One that is designed for time series data is
-"Seasonal Hybrid ESD" [@HochenbaumVK2017] from Twitter. This is available an
+"Seasonal Hybrid ESD" [@HochenbaumVK2017] from Twitter. This is available as an
 open source package,
-[AnomalyDetection](https://github.com/twitter/AnomalyDetection).
+[AnomalyDetection](https://github.com/twitter/AnomalyDetection). Another that
+has proven effective[@He2016] is the unsupervised Invariants Minig algorithm.
 
 
-## Resources - to remove once added to bib
+# Resources
+
+_Convert to BibTeX references:_
 
 * [AnomalyDetection (GitHub)](https://github.com/twitter/AnomalyDetection)
 * [Anomaly Detection in R](https://www.r-bloggers.com/anomaly-detection-in-r-2/)
