@@ -2,7 +2,13 @@
 
 ## Build
 
-To build [HTML|PDF] use on 
+To build HTML or PDF use:
+
+Ensure library path is set. Mine is:
+
+```bash
+export R_LIBS_USER=/usr/local/lib/R/site-library:/usr/lib/R/site-library:/usr/lib/R/library
+```
 
 ```bash
 make clean anomalies.[html|pdf]

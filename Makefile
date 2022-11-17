@@ -1,7 +1,7 @@
 #!/usr/bin/make
 
-.PHONY: clean cleanall
-.SUFFIXES: .md .Rmd .html .pdf
+.SUFFIXES:	.md .Rmd .html .pdf
+.DEFAULT:	anomalies.html
 
 %.html : %.md
 	@pandoc $< -o $@
@@ -12,9 +12,10 @@
 %.pdf:	%.Rmd
 	@R --quiet --slave --vanilla --file=make.R --args $@
 
+.PHONY: clean
 clean:
 	@$(RM) -rf cache figure *.log *.tex *.synctex.gz
 
+.PHONY: cleanall
 cleanall: clean
 	@$(RM) -rf *.html *.pdf
-
